@@ -1,0 +1,31 @@
+.disableSelection() {
+	-webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+.reflect() {
+	transform: scale(-1, 1);
+}
+
+.centerized() {
+	align-items: center;
+	justify-content: center;
+}
+
+// Colors:
+.whiteTx(@a:1) {
+	color: rgba(255, 255, 255, @a);
+}
+.blackTx(@a:1) {
+	color: rgba(000, 000, 000, @a);
+}
+.whiteBg(@a:1) {
+	background-color: rgba(255, 255, 255, @a);
+}
+.blackBg(@a:1) {
+	background-color: rgba(000, 000, 000, @a);
+}

@@ -1,0 +1,268 @@
+<!Doctype html>
+<html class="no-js" lang="" id="islamfactcheck">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title id="page-title">Islam Fact Check</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <!-- Place favicon.ico in the root directory -->
+        <script type="text/javascript" async>
+          WebFontConfig = {
+            google: { families: [ 'Roboto:400,900:latin' ] }
+          };
+          (function() {
+            var wf = document.createElement('script');
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })(); </script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/styles.css?420">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="screen">
+          <!-- Always shows a header, even in smaller screens. -->
+          <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title" style="margin-left:-20px">
+                  <a href="/"><img src="img/logo.png" height="40px"></a>
+                </span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                      <span style="padding-right:10px;">{{currentCategory}}</span>
+                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaFacebook('http://islamfactcheck.org', 'Islam Fact Check', 'Providing the Facts about Islam and Muslims', 'http://islamfactcheck.org/img/main-fb-share-logo.jpg')">
+                        <i class="icon i1"></i>
+                      </a>
+                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaTwitter('Islam Fact Check - Providing the Facts about Islam and Muslims.', 'http://islamfactcheck.org')">
+                        <i class="icon i2"></i>
+                      </a>
+                      <a v-show="isMobile" class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaWhatsApp('Islam Fact Check - Providing the Facts about Islam and Muslims.\n\r', 'http://islamfactcheck.org')">
+                        <i class="icon i6"></i>
+                      </a>
+                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaMail('Islam Fact Check', 'http://islamfactcheck.org - Providing the Facts about Islam and Muslims')">
+                        <i class="material-icons">email</i>
+                      </a>
+                      <a v-show="!isMobile" class="mdl-button mdl-js-button mdl-button--icon" v-on:click="print()">
+                        <i class="material-icons">print</i>
+                      </a>
+                      <a href="#about" class="mdl-button mdl-js-button" style="color: #FFFFFF">About Us</a>&#32;
+<!-- 					  |&#32;<a href="#pressrelease" class="mdl-button mdl-js-button" style="color: #FFFFFF">Press</a> -->
+                    </nav>
+
+                    <!-- Right aligned menu below button -->
+                    <button id="demo-menu-lower-right"
+                            class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-right">
+                        <a v-on:click="shareViaFacebook('http://islamfactcheck.org', 'Islam Fact Check', 'Providing the Facts about Islam and Muslims', 'http://islamfactcheck.org/img/main-fb-share-logo.jpg')">
+                            <li class="mdl-menu__item">Share on Facebook</li>
+                        </a>
+                        <a v-on:click="shareViaTwitter('Islam Fact Check - Providing the Facts about Islam and Muslims.', 'http://islamfactcheck.org')">
+                            <li class="mdl-menu__item">Tweet on Twitter</li>
+                        </a>
+                        <a v-on:click="shareViaMail('Islam Fact Check', 'http://islamfactcheck.org - Providing the Facts about Islam and Muslims')">
+                            <li class="mdl-menu__item">Share via Email</li>
+                        </a>
+                        <a v-on:click="print()">
+                            <li class="mdl-menu__item">Print</li>
+                        </a>
+                    </ul>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">
+                  <a href="/"><img src="img/logo-black.png" width="80%"></a>
+                </span>
+                <nav class="mdl-navigation">
+                    <a style="cursor:pointer" v-for="info in infos" v-on:click="gotoCategory(info.categoryId)" class="mdl-navigation__link">{{info.category}}</a>
+                </nav>
+                <div style="padding-left: 30px">
+                    <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaFacebook('http://islamfactcheck.org', 'Islam Fact Check', 'Providing the Facts about Islam and Muslims', 'http://islamfactcheck.org/img/main-fb-share-logo.jpg')">
+                        <i class="icon i4"></i>
+                    </a>
+                    <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaTwitter('Islam Fact Check - Providing the Facts about Islam and Muslims.', 'http://islamfactcheck.org')">
+                        <i class="icon i5"></i>
+                    </a>
+                    <a v-show="isMobile" class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaWhatsApp('Islam Fact Check - Providing the Facts about Islam and Muslims.\n', 'http://islamfactcheck.org')">
+                        <i class="icon i6"></i>
+                    </a>
+                    <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="shareViaMail('Islam Fact Check', 'http://islamfactcheck.org - Providing the Facts about Islam and Muslims')">
+                        <i class="material-icons">email</i>
+                    </a>
+                    <a v-show="!isMobile" class="mdl-button mdl-js-button mdl-button--icon" v-on:click="print()">
+                        <i class="material-icons">print</i>
+                    </a>
+                </div>
+            </div>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <!-- Your content goes here -->
+                    <div class="bg">
+                    </div>
+                    <nav class="category">
+                      <ul>
+                        <li v-for="info in infos"><a href="#{{info.categoryId}}">{{info.category}}</a></li>
+                        <li><a href="" id="islam-fact-check"></a></li>
+                      </ul>
+                    </nav>
+                    <div class="main" id="islam-fact-check" >
+                        <section id="{{info.categoryId}}" class="category mdl-shadow--2dp" v-for="info in infos" track-by="$index">
+                            <h2>{{info.category}}</h2>
+                            <div id="{{data.id}}" class="info mdl-grid" v-for="data in info.data">
+                                <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <h3>
+                                        <i class="material-icons left">clear</i>
+                                        <span class="text">Assertion</span>
+                                    </h3>
+                                    <p style="width:100%">{{data.assertion}}</p>
+                                </div>
+                                <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <h3>
+                                        <i class="material-icons right">check</i>
+                                        <span class="text">Fact</span>
+                                    </h3>
+                                    <div v-show="!data.showMore">
+                                        <div id="{{data.factid}}"></div>
+                                        <a v-show="data.fact.length>data.cutoffPoint" style="cursor:pointer" v-on:click="data.showMore=toggleMoreText(data.showMore)">read more&gt</a>
+                                    </div>
+                                    <div v-show="data.showMore">
+                                        <div id="{{data.factid+'hidden'}}"></div>
+                                        <a style="cursor:pointer" v-on:click="data.showMore=toggleMoreText(data.showMore)">&ltread less</a>
+                                    </div>
+                                    <div class="share-section" style="padding-top: 10px">
+                                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="share('Facebook', data)">
+                                        <i class="icon i4"></i>
+                                      </a>
+                                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="share('Twitter', data)">
+                                        <i class="icon i5"></i>
+                                      </a>
+                                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="share('WhatsApp', data)" v-show="isMobile">
+                                        <i class="icon i6"></i>
+                                      </a>
+                                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="share('Mail', data)">
+                                        <i class="material-icons">email</i>
+                                      </a>
+                                      <a class="mdl-button mdl-js-button mdl-button--icon" v-on:click="print(data)">
+                                        <i class="material-icons">print</i>
+                                      </a>
+                                  </div>
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+
+                    <footer>                        
+						<section id="about" class="category mdl-shadow--2dp">
+							<h3>About islamfactcheck.org</h3>
+							<p><a href="http://www.islamfactcheck.org">www.islamfactcheck.org</a> was created to provide quick access to verifiable, fact-based information so that people of all faiths can use this information proactively in everything from presentations and class assignments to sermons,  as well as to respond to falsehoods promoted by anti-Muslim hate groups about Islamic beliefs and practices and Muslims’ lives, contributions, hopes and dreams. All facts cited in this web site are hyperlinked to source information for easy verification.</p> 
+							<p>Help us cover the costs of this web site by making a meaningful donation at the highest amount you can afford.  Your donations are fully tax deductible and eligible for employer matching by most companies that match their employee’s donations to 501(c)(3) non-profit organizations.   Click on the “Donate” button below to support this project:</p>
+							<div align="center">
+								<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+									<input name="cmd" type="hidden" value="_s-xclick" /> 
+									<input name="hosted_button_id" type="hidden" value="KQACSHTU9QEP8" /> 
+									<input alt="PayPal - The safer, easier way to pay online!" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" /> 
+									<img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" />
+								</form>
+							</div>
+							<br/><br/>
+							<!-- <p>View our <a href="privacypolicy.html" target="_new">Privacy Policy</a></p> -->
+						</section>
+						
+						<!--
+						<section id="pressrelease" class="category mdl-shadow--2dp">
+							<h3>PRESS RELEASE</h3>
+							<p>Coming soon.</p>
+						</section>
+						-->					
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						
+                    </footer>
+                </div>
+            </main>
+          </div>
+        </div>
+        <div class="printSingle" v-show="printSingle">
+          <div>
+            <h6>Assertion: {{printAssertion}}</h6>
+            <div id="printSingleFact"></div>
+            <div>Link: {{printLink}}</div>
+          </div>
+        </div>
+        <div class="printAll" v-show="printAll">
+          <section v-for="info in infos" track-by="$index">
+            <h5 style="text-align:center">{{info.category}}</h5>
+            <div v-for="data in info.data">
+              <h6>Assertion: {{data.assertion}}</h6>
+              <div id="{{data.factid}}print"></div>
+              <div>Link: {{data.inPageLink}}</div>
+            </div>
+          </section>
+        </div>
+        <script type="text/javascript" async>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '212090972473248',
+              // appId      : '1696928083877599',
+              xfbml      : true,
+              version    : 'v2.5'
+            });
+          };
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
+        <script type="text/javascript" async src="js/app.js?420"></script>
+		
+						
+<!-- Start Open Web Analytics Tracker -->
+<script type="text/javascript">
+//<![CDATA[
+var owa_baseUrl = 'http://www.islamfactcheck.org/analytics/';
+var owa_cmds = owa_cmds || [];
+owa_cmds.push(['setSiteId', 'afd2ba6f066e03140850c9d7e47ec468']);
+owa_cmds.push(['trackPageView']);
+owa_cmds.push(['trackClicks']);
+owa_cmds.push(['trackDomStream']);
+
+(function() {
+	var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+	owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+	_owa.src = owa_baseUrl + 'modules/base/js/owa.tracker-combined-min.js';
+	var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+}());
+//]]>
+</script>
+<!-- End Open Web Analytics Code -->
+				
+		
+    </body>
+</html>
